@@ -1,0 +1,48 @@
+<div class="cart-container">
+<div class="empty-cart-message" *ngIf="!cartItems[0]"><h2>The Cart Is empty</h2></div>
+<div class="cart-panel">
+<div class="cart-item" *ngFor="let product of cartItems">
+    <img class="product-image" src="{{product.url}}">
+    <div class="cart-item-details">
+    <h4>{{product.name}}</h4>
+    
+    <label>$ {{product.price}}</label>
+    <br>
+    <label>Amount:</label>
+    <input class="number-input" type="number" name="amount" (change)="onChange($event,product)" value="{{product.amount}}">
+</div>
+
+</div>
+
+</div>
+<form  class="form-margin" #form="ngForm" (ngSubmit)="onSubmit()">
+    <label> Full Name</label>
+    <br>
+    <input type="text"
+     required name="fullName"
+     [(ngModel)]="fullName"
+     minlength="3"
+     placeholder="(minimum 3 chracters)">
+    <br>
+    <label>Adress</label>
+    <br>
+    <input type="text" 
+    required name="adress" 
+    [(ngModel)]="adress" 
+    minlength="6" 
+    placeholder="(minimum 6 characters)">
+    <br>
+    <label>Credit card number</label>
+    <br>
+    <input type="number" 
+    required name="Card" 
+    [(ngModel)]="card" 
+    minlength="16" 
+    placeholder="(16-digit number">
+    <br>
+    <input type="submit" 
+    value="submit" 
+    [disabled]="form.invalid || totalPrice===0">
+    <h3>Total Price : {{totalPrice}}</h3>
+</form>
+</div>

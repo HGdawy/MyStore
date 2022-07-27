@@ -1,0 +1,23 @@
+<div *ngIf="product$ | async as product" class="detail-container" >
+<img src="{{product.url}}" alt="{{product.name}}">
+<div class="detail-item">
+    <h3>{{product.name}}</h3>
+    <label>{{product.price}}</label>
+    <p>{{product.description}}</p>
+    <select class="select-input" name="amount" [(ngModel)]="amount" >
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+    </select>
+    <br>
+    <button (click)="addToCart(product)">Add TO Cart</button>
+    <br>
+<a class="back-link" routerLink="/"> Back to Product List</a>
+</div>
+
+
+
+
+</div>
+
