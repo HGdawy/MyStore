@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input ,Output ,EventEmitter} from '@angular/core';
 import {Product} from "../../../assets/types.js";
-import { AddToCartService } from '../../services/add-to-cart.service';
+
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
@@ -8,37 +8,42 @@ import { AddToCartService } from '../../services/add-to-cart.service';
   
 })
 export class ProductItemComponent implements OnInit {
+  amount:number=1;
 @Input() product:Product={description: "",
 id: 0,
 name: "",
 price: 0,
 url: "",
-amount:1};
+amount:0};
 
 
-constructor(private addTocart : AddToCartService ) { }
+constructor() { }
+@Output() addToCart: EventEmitter<Product>= new EventEmitter
 
-amount:number=1;
+
+
+
 
   ngOnInit(): void {
     this.product={...this.product,amount:1}
   }
 
-
-
-  addToCart(){
-   const product :Product ={
-    description: this.product.description,
-    id: this.product.id,
-    name: this.product.name,
-    price: this.product.price,
-    url: this.product.url,
-    amount: Number(this.amount)
-   } 
     
 
-  this.addTocart.addToCart(product)
-   
-  }
+  add():void{
+    const product:Product ={
+      description: this.product.description,
+      id: this.product.id,
+      name: this.product.name,
+      price: this.product.price,
+      url: this.product.url,
+      amount:Number(this.amount)
+    }
+    
+    this.addToCart.emit(product)
+    
+    
+}
+ 
 
 }

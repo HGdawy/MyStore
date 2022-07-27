@@ -9,7 +9,7 @@
     <label>$ {{product.price}}</label>
     <br>
     <label>Amount:</label>
-    <input class="number-input" type="number" name="amount" (change)="onChange($event,product)" value="{{product.amount}}">
+    <input class="number-input" type="number" name="amount" [(ngModel)]="amount||product.amount" (ngModelChange)="onChange($event,product)" >
 </div>
 
 </div>

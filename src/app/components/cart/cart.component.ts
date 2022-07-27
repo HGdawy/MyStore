@@ -15,6 +15,7 @@ export class CartComponent implements OnInit {
   card!: number ;
 cartItems :Product[]=[];
 totalPrice:number=0
+ amount!:number;
 
   constructor(private cart:AddToCartService , private router : Router ,private conf:ConfirmationService) { }
 
@@ -34,7 +35,8 @@ onSubmit(){
 }
 
 onChange(e:any,p:Product){
-  p.amount=Number( e.target.value )
+  console.log(e)
+  p.amount=Number( e )
   this.cart.changeAmount(p)
   this.totalPrice=  this.cart.totalPrice()
   this.cartItems = this.cart.getCart()
